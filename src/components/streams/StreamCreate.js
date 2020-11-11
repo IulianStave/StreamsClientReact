@@ -4,8 +4,15 @@ import { Field, reduxForm } from "redux-form";
 class StreamCreate extends React.Component {
   
   
-  renderInput() {
-    return <div>I am input</div>;
+  renderInput(formProps) {
+    console.log(formProps);
+    return (
+      <input 
+        onChange={formProps.input.onChange}
+        value={formProps.input.value}
+      
+      />
+      );
   }
   
   render() {
