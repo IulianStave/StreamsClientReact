@@ -4,7 +4,12 @@ import { Field, reduxForm } from "redux-form";
 class StreamCreate extends React.Component {
   render() {
     console.log(this.props);
-    return <div>Stream New</div>;
+    return (
+      <form>
+        <Field name="title"/>
+        <Field name="description"/>
+      </form>
+    );
   }
 }
 
