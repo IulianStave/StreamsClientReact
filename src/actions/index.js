@@ -8,6 +8,7 @@ import {
   EDIT_STREAM,
 } from "./types";
 import streams from "../apis/streams";
+import history from '../history';
 
 export const signIn = (userId) => {
   return {
@@ -29,6 +30,9 @@ export const createStream = (formValues) => async (dispatch, getState) => {
     type: CREATE_STREAM,
     payload: response.data,
   });
+  // programmatic navigation
+  // we either show error or navigate back to the list
+  history.push('/');
 };
 
 export const fetchStreams = () => async (dispatch) => {
