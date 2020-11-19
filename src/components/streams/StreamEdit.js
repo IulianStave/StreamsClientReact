@@ -1,19 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-
-const StreamEdit = (props) => {
-  console.log(props);
-  return (
-    <div>
-      Edit a stream 
-    </div>
-  );
+class StreamEdit extends React.Component {
+  componentDidMount() {
+    // We use ownProps property match -> params -> id
+    // passed by default when rendering in Route component
+    // based on path
+    this.props.fetchStream(this.props.match.params.id);
+  }
+  
+  
+  render() {
+    console.log(this.props);
+    return <div>Edit a stream</div>;
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
-  return {stream: state.streams[ownProps.match.params.id] };
-}
+  return { stream: state.streams[ownProps.match.params.id] };
+};
 
 export default connect(mapStateToProps)(StreamEdit);
