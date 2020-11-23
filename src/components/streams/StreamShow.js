@@ -1,10 +1,13 @@
 import React from 'react';
 
-const StreamShow = () => {
+class StreamShow extends React.Component {
+  render() {
   return (
     <div>
       StreamShow
     </div>
   );
 }
+}
+
 export default StreamShow;
