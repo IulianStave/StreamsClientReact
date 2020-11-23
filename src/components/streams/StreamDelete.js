@@ -4,12 +4,11 @@ import history from "../../history";
 import { fetchStream } from "../../actions";
 import { connect } from "react-redux";
 
-
 class StreamDelete extends React.Component {
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchStream(this.props.match.params.id);
   }
-  
+
   renderActions() {
     return (
       <React.Fragment>
@@ -19,22 +18,27 @@ class StreamDelete extends React.Component {
     );
   }
 
+  renderContent() {
+    if (!this.props.stream) {
+      return "Are you sure want to delete this stream?";
+    }
+    return `Are you sure you want to delete the ${this.props.stream.title} stream?`;
+  }
+
   render() {
     return (
-      <div>
-        <Modal
-          onDismiss={() => history.push("/")}
-          title="Delete Stream"
-          content={`Are you sure you want to delete ${this.props.stream.title} strean?`}
-          actions={this.renderActions()}
-        />
-      </div>
+      <Modal
+        onDismiss={() => history.push("/")}
+        title="Delete Stream"
+        content={this.renderContent()}
+        actions={this.renderActions()}
+      />
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { stream: state.streams[ownProps.match.params.id]}
-}
+  return { stream: state.streams[ownProps.match.params.id] };
+};
 
 export default connect(mapStateToProps, { fetchStream })(StreamDelete);
